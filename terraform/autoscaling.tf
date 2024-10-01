@@ -1,22 +1,25 @@
-resource "aws_autoscaling_group" "apache_asg" {
+# autoscaling.tf
+
+resource "aws_autoscaling_group" "my_asg" {
   launch_template {
-    id      = aws_launch_template.apache_template.id
+    id      = aws_launch_template.my_launch_template.id
     version = "$Latest"
   }
-  
-  vpc_zone_identifier = var.subnet_ids
+
   min_size            = 1
   max_size            = 3
   desired_capacity    = 1
-
-  target_group_arns   = [aws_lb_target_group.apache_tg.arn]
+  vpc_zone_identifier = [aws_subnet.my_subnet_a.id, aws_subnet.my_subnet_b.id]
 
   tag {
     key                 = "Name"
-    value               = "Apache-Server"
+    value               = "my-instance"
     propagate_at_launch = true
   }
 
-  health_check_type         = "EC2"
-  health_check_grace_period = 300
+  health_check_type          = "ELB"
+  health_check_grace_period  = 300
+
+  # Link to target group
+  target_group_arns = [aws_lb_target_group.my_target_group.arn]  # Reference the target group
 }

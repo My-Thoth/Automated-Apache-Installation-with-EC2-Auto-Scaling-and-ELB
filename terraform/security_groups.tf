@@ -1,7 +1,7 @@
 resource "aws_security_group" "ec2_sg" {
   name        = "ec2-sg"
   description = "Allow HTTP traffic to EC2 instances"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.my_vpc.id
 
   ingress {
     from_port   = 80
@@ -21,7 +21,7 @@ resource "aws_security_group" "ec2_sg" {
 resource "aws_security_group" "elb_sg" {
   name        = "elb-sg"
   description = "Allow traffic from the internet to the ELB"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.my_vpc.id
 
   ingress {
     from_port   = 80

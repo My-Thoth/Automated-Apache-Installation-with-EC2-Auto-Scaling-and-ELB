@@ -5,9 +5,14 @@
       "Effect": "Allow",
       "Action": [
         "ec2:Describe*",
-        "elasticloadbalancing:*",
-        "autoscaling:*",
-        "cloudwatch:*"
+        "autoscaling:Describe*",
+        "cloudwatch:PutMetricAlarm",
+        "cloudwatch:DescribeAlarms",
+        "cloudwatch:GetMetricStatistics",
+        "cloudwatch:ListMetrics",
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
       ],
       "Resource": "*"
     }

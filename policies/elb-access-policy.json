@@ -5,7 +5,8 @@
       "Effect": "Allow",
       "Action": [
         "elasticloadbalancing:*",
-        "ec2:DescribeInstances"
+        "ec2:Describe*",
+        "iam:PassRole"
       ],
       "Resource": "*"
     }

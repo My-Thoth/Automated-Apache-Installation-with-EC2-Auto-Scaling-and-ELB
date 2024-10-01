@@ -1,9 +1,7 @@
 output "elb_dns_name" {
-  description = "The DNS name of the load balancer"
-  value       = aws_lb.apache_lb.dns_name
+  value = aws_lb.my_lb.dns_name
 }
 
-output "autoscaling_group_name" {
-  description = "The name of the Auto Scaling group"
-  value       = aws_autoscaling_group.apache_asg.name
+output "launch_template_id" {
+  value = aws_launch_template.my_launch_template.id
 }
